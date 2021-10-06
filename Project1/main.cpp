@@ -620,8 +620,11 @@ void Queue<T>::Add(T c)
 {
     // Если в очереди есть свободное место, то увеличиваем количество
     // значений и вставляем новый элемент
+    if (!IsFull())
+    {
         Wait.AddTail(c);
         QueueLength++;
+    }
 }
 
 template <class T>
@@ -645,20 +648,6 @@ Elem<T>* Queue<T>::Extract()
 // Тестовый пример
 void main()
 {
-    List<int> L;
-
-    const int n = 10;
-    int a[n] = { 0,1,2,3,4,5,6,7,8,9 };
-
-    // Добавляем элементы, стоящие на четных индексах, в голову,
-    // на нечетных - в хвост
-    for (int i = 0; i < n; i++)
-        if (i % 2 == 0)
-            L.AddHead(a[i]);
-        else
-            L.AddTail(a[i]);
-
-    // Распечатка списка
     Queue<int> QU(10);
     for (int i = 0; i < 10; i++)
     {
